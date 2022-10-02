@@ -4,8 +4,6 @@ import org.selbowgreaser.forecasting.Algorithm;
 
 public class CommandLineUserRequest implements UserRequest {
     private final String[] request; //todo поставить private // done
-    private final int INDEX_CURRENCY = 1;
-    private final int INDEX_PERIOD = 2;
 
     public CommandLineUserRequest(String request) {
         this.request = parseRequest(request);
@@ -17,12 +15,14 @@ public class CommandLineUserRequest implements UserRequest {
 
     @Override
     public String getCurrency() {
-        return request[INDEX_CURRENCY];
+        int indexCurrency = 1;
+        return request[indexCurrency];
     } //todo вывести в константу и назвать для чего она // done
 
     @Override
     public String getPeriod() {
-        return request[INDEX_PERIOD];
+        int indexPeriod = 2;
+        return request[indexPeriod];
     } //todo вывести в константу и назвать для чего она // done
 
     @Override
