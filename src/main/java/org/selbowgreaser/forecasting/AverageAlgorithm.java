@@ -22,17 +22,16 @@ public class AverageAlgorithm implements ForecastingAlgorithm {
         return predictions;
     }
 
-    //todo убери статику методов ниже у методов, она излищне
+    //todo убери статику методов ниже у методов, она излищне // done
 
-    private static List<Double> forecastWeek(List<Double> lastSevenValues) {
-        for (int i = 0; i < lastSevenValues.size(); i++) { //todo идея подсказывает заменить цикл, попробуй, если отрабатывает как нужно, поменяй
-            double sum = getSumArray(lastSevenValues);
-            lastSevenValues.set(i, sum / lastSevenValues.size());
-        }
+    private List<Double> forecastWeek(List<Double> lastSevenValues) {
+        lastSevenValues.replaceAll(ignored -> { //todo идея подсказывает заменить цикл, попробуй, если отрабатывает как нужно, поменяй // done
+            return getSumArray(lastSevenValues) / lastSevenValues.size();
+        });
         return lastSevenValues;
     }
 
-    private static double getSumArray(List<Double> lastSevenValues) {
+    private double getSumArray(List<Double> lastSevenValues) {
         double sum = 0;
         for (Double value : lastSevenValues) {
             sum += value;
@@ -40,7 +39,7 @@ public class AverageAlgorithm implements ForecastingAlgorithm {
         return sum;
     }
 
-    private static List<Double> forecastTomorrow(List<Double> predictions, List<Double> lastSevenValues) {
+    private List<Double> forecastTomorrow(List<Double> predictions, List<Double> lastSevenValues) {
         double sum = getSumArray(lastSevenValues);
         predictions.add(sum / lastSevenValues.size());
         return predictions;
