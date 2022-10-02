@@ -22,10 +22,9 @@ public class AverageAlgorithm implements ForecastingAlgorithm {
         return predictions;
     }
 
-    //todo убери статику методов ниже у методов, она излищне // done
 
     private List<Double> forecastWeek(List<Double> lastSevenValues) {
-        lastSevenValues.replaceAll(ignored -> { //todo идея подсказывает заменить цикл, попробуй, если отрабатывает как нужно, поменяй // done
+        lastSevenValues.replaceAll(ignored -> {
             return getSumArray(lastSevenValues) / lastSevenValues.size();
         });
         return lastSevenValues;
