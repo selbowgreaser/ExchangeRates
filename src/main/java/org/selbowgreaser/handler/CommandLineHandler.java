@@ -22,7 +22,7 @@ public class CommandLineHandler implements RequestHandler {
 
         List<Double> predictions = new AverageAlgorithm().forecast(request, exchangeRateData);
 
-        String resultString = new OutputHandler().processing(exchangeRateData, predictions);
+        String resultString = new OutputHandler().processing(exchangeRateData, predictions); //todo result
 
         System.out.println(resultString);
     }

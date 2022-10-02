@@ -1,7 +1,7 @@
 package org.selbowgreaser.command;
 
 public class CommandLineUserRequest implements UserRequest {
-    String[] request;
+    String[] request; //todo поставить private
 
     public CommandLineUserRequest(String request) {
         this.request = parseRequest(request);
@@ -14,15 +14,15 @@ public class CommandLineUserRequest implements UserRequest {
     @Override
     public String getCurrency() {
         return request[1];
-    }
+    } //todo вывести в константу и назвать для чего она
 
     @Override
     public String getPeriod() {
         return request[2];
-    }
+    } //todo вывести в константу и назвать для чего она
 
     @Override
-    public String getAlgorithm() {
-        return "avg";
+    public String getAlgorithm() { //todo не нашел где используется метод
+        return "avg"; //todo вывести в константу и назвать для чего она
     }
 }

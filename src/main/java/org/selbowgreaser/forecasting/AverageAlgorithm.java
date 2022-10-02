@@ -12,22 +12,22 @@ public class AverageAlgorithm implements ForecastingAlgorithm {
     public List<Double> forecast(UserRequest request, ExchangeRateData exchangeRateData) {
         List<Double> predictions = new ArrayList<>();
         String period = request.getPeriod();
-        List<Double> lastSevenValue = exchangeRateData.getData();
+        List<Double> lastSevenValue = exchangeRateData.getData(); //todo название lastSevenValues
 
         if (period.equals("tomorrow")) {
             double sum = 0;
-            for (Double value : lastSevenValue) {
+            for (Double value : lastSevenValue) { //todo вынести в приватный метод
                 sum += value;
             }
-            predictions.add(sum / 7);
+            predictions.add(sum / 7); //todo вывести в константу и назвать для чего она
             return predictions;
         } else if (period.equals("week")) {
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 7; i++) { //todo вывести в константу и назвать для чего она +
                 double sum = 0;
-                for (Double value : lastSevenValue) {
+                for (Double value : lastSevenValue) { //todo вынести в приватный метод
                     sum += value;
                 }
-                lastSevenValue.set(i, sum / 7);
+                lastSevenValue.set(i, sum / 7); //todo вывести в константу и назвать для чего она +
             }
             return lastSevenValue;
         }

@@ -13,15 +13,15 @@ public class OutputHandler {
 
     public String processing(ExchangeRateData exchangeRateData, List<Double> predictions) {
         int predictionSize = predictions.size();
-        StringBuilder resultString = new StringBuilder();
+        StringBuilder resultString = new StringBuilder(); //todo result
 
         for (int i = 0; i < predictionSize; i++) {
             LocalDate day = exchangeRateData.getLastDate().plusDays(i);
 
             resultString.append(StringUtils.capitalize(day.getDayOfWeek()
-                    .getDisplayName(TextStyle.SHORT, new Locale("ru"))));
+                    .getDisplayName(TextStyle.SHORT, new Locale("ru")))); //todo вывести в константу и назвать для чего она
             resultString.append(" ");
-            resultString.append(day.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+            resultString.append(day.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))); //todo вывести в константу и назвать для чего она
             resultString.append(" – ");
             resultString.append(String.format("%.2f", predictions.get(i)));
             resultString.append("\n");
