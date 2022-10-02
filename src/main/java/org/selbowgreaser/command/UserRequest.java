@@ -1,9 +1,11 @@
 package org.selbowgreaser.command;
 
+import org.selbowgreaser.forecasting.Algorithm;
+
 public interface UserRequest {
     String getCurrency();
 
     String getPeriod();
 
-    String getAlgorithm();
+    Algorithm getAlgorithm();
 }

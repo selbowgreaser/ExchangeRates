@@ -10,22 +10,24 @@ import java.util.List;
 import java.util.Locale;
 
 public class OutputHandler {
+    private final String RU = "ru";
+    private final String DATE_PATTERN = "dd.MM.yyyy";
 
     public String processing(ExchangeRateData exchangeRateData, List<Double> predictions) {
         int predictionSize = predictions.size();
-        StringBuilder resultString = new StringBuilder(); //todo result
+        StringBuilder result = new StringBuilder(); //todo result // done
 
         for (int i = 0; i < predictionSize; i++) {
             LocalDate day = exchangeRateData.getLastDate().plusDays(i);
 
-            resultString.append(StringUtils.capitalize(day.getDayOfWeek()
-                    .getDisplayName(TextStyle.SHORT, new Locale("ru")))); //todo вывести в константу и назвать для чего она
-            resultString.append(" ");
-            resultString.append(day.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))); //todo вывести в константу и назвать для чего она
-            resultString.append(" – ");
-            resultString.append(String.format("%.2f", predictions.get(i)));
-            resultString.append("\n");
+            result.append(StringUtils.capitalize(day.getDayOfWeek()
+                    .getDisplayName(TextStyle.SHORT, new Locale(RU)))); //todo вывести в константу и назвать для чего она // done
+            result.append(" ");
+            result.append(day.format(DateTimeFormatter.ofPattern(DATE_PATTERN))); //todo вывести в константу и назвать для чего она // done
+            result.append(" – ");
+            result.append(String.format("%.2f", predictions.get(i)));
+            result.append("\n");
         }
-        return resultString.toString();
+        return result.toString();
     }
 }

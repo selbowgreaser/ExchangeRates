@@ -22,8 +22,8 @@ public class CommandLineHandler implements RequestHandler {
 
         List<Double> predictions = new AverageAlgorithm().forecast(request, exchangeRateData);
 
-        String resultString = new OutputHandler().processing(exchangeRateData, predictions); //todo result
+        String result = new OutputHandler().processing(exchangeRateData, predictions); //todo result // done
 
-        System.out.println(resultString);
+        System.out.println(result);
     }
 }

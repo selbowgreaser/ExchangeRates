@@ -13,20 +13,25 @@ import java.util.List;
 
 public class ExchangeRateFilesReader {
     private final UserRequest request;
+    private final int SKIP_ROWS = 1;
+    private final int COUNT_LINES = 7;
+    private final int FIRST_LINE = 0;
+    private final String DATE_PATTERN = "dd.MM.yyyy";
+
 
     public ExchangeRateFilesReader(UserRequest request) {
         this.request = request;
     }
 
     public ExchangeRateData parseExchangeRatesFile() {
-        String fileName = "src/main/resources/" + request.getCurrency().toUpperCase() + ".csv"; //todo используй MessageFormat.format()
+        String fileName = MessageFormat.format("src/main/resources/{0}.csv", request.getCurrency().toUpperCase()); //todo используй MessageFormat.format() // done
         List<ExchangeRate> beans;
 
         try (FileReader file = new FileReader(fileName)) {
             beans = new CsvToBeanBuilder<ExchangeRate>(file)
                     .withType(ExchangeRate.class)
                     .withSeparator(';')
-                    .withSkipLines(1)  //todo вывести в константу и назвать для чего она
+                    .withSkipLines(SKIP_ROWS)  //todo вывести в константу и назвать для чего она // done
                     .build()
                     .parse();
         } catch (IOException e) {
@@ -34,17 +39,17 @@ public class ExchangeRateFilesReader {
         }
 
         List<Double> lastSevenData = new ArrayList<>();
-        for (int i = 0; i < 7; i++) { //todo вывести в константу и назвать для чего она
+        for (int i = 0; i < COUNT_LINES; i++) { //todo вывести в константу и назвать для чего она // done
             lastSevenData.add(beans.get(i).getCurs());
         }
 
-        LocalDate lastDate = convertStringToDate(beans.get(0).getDate()); //todo вывести в константу и назвать для чего она
+        LocalDate lastDate = convertStringToDate(beans.get(FIRST_LINE).getDate()); //todo вывести в константу и назвать для чего она // done
 
         return new ExchangeRateData(lastDate, lastSevenData);
     }
 
     private LocalDate convertStringToDate(String dateInString) {
 
-        return LocalDate.parse(dateInString, DateTimeFormatter.ofPattern("dd.MM.yyyy")); //todo вывести в константу и назвать для чего она
+        return LocalDate.parse(dateInString, DateTimeFormatter.ofPattern(DATE_PATTERN)); //todo вывести в константу и назвать для чего она // done
     }
 }

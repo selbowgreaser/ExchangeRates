@@ -3,7 +3,11 @@ package org.selbowgreaser.parser;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvNumber;
 import com.opencsv.bean.CsvNumbers;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 public class ExchangeRate {
     @CsvBindByPosition(position = 0)
     @CsvNumbers({
@@ -28,24 +32,9 @@ public class ExchangeRate {
     @CsvBindByPosition(position = 3)
     private String cdx;
 
-    public ExchangeRate() { //todo используй lombok
-    }
 
-    public Integer getNominal() {
-        return nominal;
-    } //todo используй lombok
-
-    public String getDate() {
-        return date;
-    } //todo используй lombok
-
-    public Double getCurs() {
-        return curs;
-    } //todo используй lombok
-
-    public String getCdx() {
-        return cdx;
-    } //todo используй lombok
+    //todo используй lombok
+    // done
 
     @Override
     public String toString() {
