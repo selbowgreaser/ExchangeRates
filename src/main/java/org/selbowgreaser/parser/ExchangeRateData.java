@@ -11,8 +11,4 @@ import java.util.List;
 public class ExchangeRateData {
     private final LocalDate lastDate;
     private final List<Double> data;
-
-   //todo используй lombok // done
-
-
 }

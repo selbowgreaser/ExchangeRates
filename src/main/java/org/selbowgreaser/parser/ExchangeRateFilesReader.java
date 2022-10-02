@@ -24,14 +24,14 @@ public class ExchangeRateFilesReader {
     }
 
     public ExchangeRateData parseExchangeRatesFile() {
-        String fileName = MessageFormat.format("src/main/resources/{0}.csv", request.getCurrency().toUpperCase()); //todo используй MessageFormat.format() // done
+        String fileName = MessageFormat.format("src/main/resources/{0}.csv", request.getCurrency().toUpperCase());
         List<ExchangeRate> beans;
 
         try (FileReader file = new FileReader(fileName)) {
             beans = new CsvToBeanBuilder<ExchangeRate>(file)
                     .withType(ExchangeRate.class)
                     .withSeparator(';')
-                    .withSkipLines(SKIP_ROWS)  //todo вывести в константу и назвать для чего она // done
+                    .withSkipLines(SKIP_ROWS)
                     .build()
                     .parse();
         } catch (IOException e) {
@@ -39,17 +39,16 @@ public class ExchangeRateFilesReader {
         }
 
         List<Double> lastSevenData = new ArrayList<>();
-        for (int i = 0; i < COUNT_LINES; i++) { //todo вывести в константу и назвать для чего она // done
+        for (int i = 0; i < COUNT_LINES; i++) {
             lastSevenData.add(beans.get(i).getCurs());
         }
 
-        LocalDate lastDate = convertStringToDate(beans.get(FIRST_LINE).getDate()); //todo вывести в константу и назвать для чего она // done
+        LocalDate lastDate = convertStringToDate(beans.get(FIRST_LINE).getDate());
 
         return new ExchangeRateData(lastDate, lastSevenData);
     }
 
     private LocalDate convertStringToDate(String dateInString) {
-
-        return LocalDate.parse(dateInString, DateTimeFormatter.ofPattern(DATE_PATTERN)); //todo вывести в константу и назвать для чего она // done
+        return LocalDate.parse(dateInString, DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 }

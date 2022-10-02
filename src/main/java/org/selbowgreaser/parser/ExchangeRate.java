@@ -32,10 +32,6 @@ public class ExchangeRate {
     @CsvBindByPosition(position = 3)
     private String cdx;
 
-
-    //todo используй lombok
-    // done
-
     @Override
     public String toString() {
         return String.format("ExchangeRate{nominal=%d, date=\"%s\", curs=%f, cdx=\"%s\"}", nominal, date, curs, cdx);

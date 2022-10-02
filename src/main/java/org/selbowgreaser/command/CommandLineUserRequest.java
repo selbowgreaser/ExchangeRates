@@ -3,7 +3,7 @@ package org.selbowgreaser.command;
 import org.selbowgreaser.forecasting.Algorithm;
 
 public class CommandLineUserRequest implements UserRequest {
-    private final String[] request; //todo поставить private // done
+    private final String[] request;
 
     public CommandLineUserRequest(String request) {
         this.request = parseRequest(request);
@@ -17,18 +17,16 @@ public class CommandLineUserRequest implements UserRequest {
     public String getCurrency() {
         int indexCurrency = 1;
         return request[indexCurrency];
-    } //todo вывести в константу и назвать для чего она // done
+    }
 
     @Override
     public String getPeriod() {
         int indexPeriod = 2;
         return request[indexPeriod];
-    } //todo вывести в константу и назвать для чего она // done
+    }
 
     @Override
-    public Algorithm getAlgorithm() { //todo не нашел где используется метод
-        // Будет использоваться позже
-        // done
-        return Algorithm.AVERAGE; //todo вывести в константу и назвать для чего она // done
+    public Algorithm getAlgorithm() {
+        return Algorithm.AVERAGE;
     }
 }
