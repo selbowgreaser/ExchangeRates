@@ -1,6 +1,7 @@
 package org.selbowgreaser.forecasting;
 
-import org.selbowgreaser.command.UserRequest;
+import org.selbowgreaser.request.Period;
+import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.parser.ExchangeRateData;
 
 import java.util.ArrayList;
@@ -9,17 +10,20 @@ import java.util.List;
 public class AverageAlgorithm implements ForecastingAlgorithm {
 
     @Override
-    public List<Double> forecast(UserRequest request, ExchangeRateData exchangeRateData) {
-        List<Double> predictions = new ArrayList<>();
-        String period = request.getPeriod();
-        List<Double> lastSevenValues = exchangeRateData.getData();
+    public List<List<Double>> forecast(UserRequest request, List<ExchangeRateData> exchangeRateDataList) {
+        List<List<Double>> allPredictions = new ArrayList<>();
+        for (ExchangeRateData exchangeRateData : exchangeRateDataList) {
+            List<Double> predictions = new ArrayList<>();
+            String period = request.getPeriodOrDate();
+            List<Double> lastSevenValues = exchangeRateData.getData();
 
-        if (period.equals("tomorrow")) {
-            return forecastTomorrow(predictions, lastSevenValues);
-        } else if (period.equals("week")) {
-            return forecastWeek(lastSevenValues);
+            if (period.equals(Period.TOMORROW.getPeriod())) {
+                allPredictions.add(forecastTomorrow(predictions, lastSevenValues));
+            } else if (period.equals(Period.WEEK.getPeriod())) {
+                allPredictions.add(forecastWeek(lastSevenValues));
+            }
         }
-        return predictions;
+        return allPredictions;
     }
 
 

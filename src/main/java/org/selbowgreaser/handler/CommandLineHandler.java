@@ -1,7 +1,8 @@
 package org.selbowgreaser.handler;
 
-import org.selbowgreaser.command.CommandLineUserRequest;
-import org.selbowgreaser.command.UserRequest;
+import org.selbowgreaser.request.CommandLineUserRequest;
+import org.selbowgreaser.request.CommandLineUserRequestException;
+import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.forecasting.AverageAlgorithm;
 import org.selbowgreaser.parser.ExchangeRateData;
 import org.selbowgreaser.parser.ExchangeRateFilesReader;
@@ -14,13 +15,22 @@ public class CommandLineHandler implements RequestHandler {
     public void processRequest() {
         Scanner userRequest = new Scanner(System.in);
 
-        System.out.println("Введите запрос в формате \"rate USD tomorrow\":");
+        System.out.println("Enter your request in the format \"Rate USD ( -period | -date ) ( week, month | tomorrow, 25.06.2032 ) " +
+                "-alg ( AVG | MYST | LY | LR) -output ( list | graph )\":");
 
-        UserRequest request = new CommandLineUserRequest(userRequest.nextLine());
+        UserRequest request;
 
-        ExchangeRateData exchangeRateData = new ExchangeRateFilesReader(request).parseExchangeRatesFile();
+        try {
+            request = new CommandLineUserRequest(userRequest.nextLine());
+        } catch (CommandLineUserRequestException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("Try again!");
+            request = new CommandLineUserRequest(userRequest.nextLine());
+        }
 
-        List<Double> predictions = new AverageAlgorithm().forecast(request, exchangeRateData);
+        List<ExchangeRateData> exchangeRateData = new ExchangeRateFilesReader(request).parseExchangeRatesFile();
+
+        List<List<Double>> predictions = new AverageAlgorithm().forecast(request, exchangeRateData);
 
         String result = new OutputHandler().processing(exchangeRateData, predictions);
 
