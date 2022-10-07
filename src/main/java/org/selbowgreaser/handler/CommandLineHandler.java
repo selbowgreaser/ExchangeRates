@@ -18,15 +18,7 @@ public class CommandLineHandler implements RequestHandler {
         System.out.println("Enter your request in the format \"Rate USD ( -period | -date ) ( week, month | tomorrow, 25.06.2032 ) " +
                 "-alg ( AVG | MYST | LY | LR) -output ( list | graph )\":");
 
-        UserRequest request;
-
-        try {
-            request = new CommandLineUserRequest(userRequest.nextLine());
-        } catch (CommandLineUserRequestException exception) {
-            System.out.println(exception.getMessage());
-            System.out.println("Try again!");
-            request = new CommandLineUserRequest(userRequest.nextLine());
-        }
+        UserRequest request = getUserRequest(userRequest);
 
         List<ExchangeRateData> exchangeRateData = new ExchangeRateFilesReader(request).parseExchangeRatesFile();
 
@@ -35,5 +27,17 @@ public class CommandLineHandler implements RequestHandler {
         String result = new OutputHandler().processing(exchangeRateData, predictions);
 
         System.out.println(result);
+    }
+
+    private UserRequest getUserRequest(Scanner userRequest) {
+        UserRequest request;
+        try {
+            request = new CommandLineUserRequest(userRequest.nextLine());
+        } catch (CommandLineUserRequestException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("Try again!");
+            request = new CommandLineUserRequest(userRequest.nextLine());
+        }
+        return request;
     }
 }

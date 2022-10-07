@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ExchangeRateData {
     private final LocalDate lastDate;
-    private final List<Double> data;
+    private final List<Double> exchangeRates;
+    private final List<Integer> denominations;
     private final Currency currency;
 }

@@ -27,13 +27,13 @@ public class ExchangeRate {
     private String date;
 
     @CsvBindByPosition(position = 2)
-    private Double curs;
+    private Double exchangeRate;
 
     @CsvBindByPosition(position = 3)
     private String cdx;
 
     @Override
     public String toString() {
-        return String.format("ExchangeRate{nominal=%d, date=\"%s\", curs=%f, cdx=\"%s\"}", nominal, date, curs, cdx);
+        return String.format("ExchangeRate{denomination=%d, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", nominal, date, curs, cdx);
     }
 }

@@ -1,5 +1,6 @@
 package org.selbowgreaser.forecasting;
 
+import lombok.Getter;
 import org.selbowgreaser.request.Period;
 import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.parser.ExchangeRateData;
@@ -7,7 +8,10 @@ import org.selbowgreaser.parser.ExchangeRateData;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class AverageAlgorithm implements ForecastingAlgorithm {
+    private final Integer REQUIRED_VALUES = 7;
+
 
     @Override
     public List<List<Double>> forecast(UserRequest request, List<ExchangeRateData> exchangeRateDataList) {
@@ -15,7 +19,7 @@ public class AverageAlgorithm implements ForecastingAlgorithm {
         for (ExchangeRateData exchangeRateData : exchangeRateDataList) {
             List<Double> predictions = new ArrayList<>();
             String period = request.getPeriodOrDate();
-            List<Double> lastSevenValues = exchangeRateData.getData();
+            List<Double> lastSevenValues = exchangeRateData.getExchangeRates();
 
             if (period.equals(Period.TOMORROW.getPeriod())) {
                 allPredictions.add(forecastTomorrow(predictions, lastSevenValues));
