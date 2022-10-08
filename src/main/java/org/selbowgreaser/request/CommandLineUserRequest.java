@@ -1,7 +1,5 @@
 package org.selbowgreaser.request;
 
-import lombok.Getter;
-
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

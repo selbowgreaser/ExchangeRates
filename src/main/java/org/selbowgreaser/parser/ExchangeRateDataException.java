@@ -1,7 +1,10 @@
 package org.selbowgreaser.parser;
 
 public class ExchangeRateDataException extends RuntimeException {
-    public ExchangeRateDataException() {};
+    public ExchangeRateDataException() {
+    }
+
+    ;
 
     public ExchangeRateDataException(String message) {
         super(message);

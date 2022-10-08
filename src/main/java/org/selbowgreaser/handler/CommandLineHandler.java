@@ -1,11 +1,11 @@
 package org.selbowgreaser.handler;
 
-import org.selbowgreaser.request.CommandLineUserRequest;
-import org.selbowgreaser.request.CommandLineUserRequestException;
-import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.forecasting.AverageAlgorithm;
 import org.selbowgreaser.parser.ExchangeRateData;
 import org.selbowgreaser.parser.ExchangeRateFilesReader;
+import org.selbowgreaser.request.CommandLineUserRequest;
+import org.selbowgreaser.request.CommandLineUserRequestException;
+import org.selbowgreaser.request.UserRequest;
 
 import java.util.List;
 import java.util.Scanner;

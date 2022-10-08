@@ -1,7 +1,7 @@
 package org.selbowgreaser.forecasting;
 
-import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.parser.ExchangeRateData;
+import org.selbowgreaser.request.UserRequest;
 
 import java.util.List;
 

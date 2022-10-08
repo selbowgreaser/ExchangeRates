@@ -25,7 +25,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>org.selbowgreaser.ExchangeRatesApp</mainClass>
+              <mainClass>org.selbowgreaser.ExchangeRatesCommandLineApp</mainClass>
             </manifest>
           </archive>
           <!--Ignoring postfix jar-with-dependencies-->
@@ -66,5 +66,18 @@
       <artifactId>opencsv</artifactId>
       <version>5.7.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambots -->
+    <dependency>
+      <groupId>org.telegram</groupId>
+      <artifactId>telegrambots</artifactId>
+      <version>6.1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambotsextensions -->
+    <dependency>
+      <groupId>org.telegram</groupId>
+      <artifactId>telegrambotsextensions</artifactId>
+      <version>6.1.0</version>
+    </dependency>
+
   </dependencies>
 </project>

@@ -1,9 +1,9 @@
 package org.selbowgreaser.forecasting;
 
 import lombok.Getter;
+import org.selbowgreaser.parser.ExchangeRateData;
 import org.selbowgreaser.request.Period;
 import org.selbowgreaser.request.UserRequest;
-import org.selbowgreaser.parser.ExchangeRateData;
 
 import java.util.ArrayList;
 import java.util.List;

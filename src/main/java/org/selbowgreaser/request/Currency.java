@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Currency {
-    USD ("USD"),
-    TRY ("TRY"),
-    EUR ("EUR");
+    USD("USD"),
+    TRY("TRY"),
+    EUR("EUR");
 
     private final String currency;
 }

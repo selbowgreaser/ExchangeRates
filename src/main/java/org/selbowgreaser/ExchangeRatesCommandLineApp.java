@@ -4,10 +4,7 @@ import org.selbowgreaser.handler.CommandLineHandler;
 import org.selbowgreaser.handler.RequestHandler;
 
 
-/**
- * Hello world!
- */
-public class ExchangeRatesApp {
+public class ExchangeRatesCommandLineApp {
     public static void main(String[] args) {
         RequestHandler app = new CommandLineHandler();
         app.processRequest();
