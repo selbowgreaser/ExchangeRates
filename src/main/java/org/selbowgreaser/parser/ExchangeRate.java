@@ -21,7 +21,7 @@ public class ExchangeRate {
             @CsvNumber("## ### ###"),
             @CsvNumber("### ### ###")
     })
-    private Integer nominal;
+    private Integer denomination;
 
     @CsvBindByPosition(position = 1)
     private String date;
@@ -34,6 +34,6 @@ public class ExchangeRate {
 
     @Override
     public String toString() {
-        return String.format("ExchangeRate{denomination=%d, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", nominal, date, curs, cdx);
+        return String.format("ExchangeRate{denomination=%d, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", denomination, date, exchangeRate, cdx);
     }
 }

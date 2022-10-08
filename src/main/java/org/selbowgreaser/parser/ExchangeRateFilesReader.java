@@ -38,13 +38,15 @@ public class ExchangeRateFilesReader {
             data = getExchangeRates(fileName);
 
             List<Double> dataForForecasting = new ArrayList<>();
+            List<Integer> lastSevenDenominations = new ArrayList<>();
             for (int i = 0; i < COUNT_LINES; i++) {
                 dataForForecasting.add(data.get(i).getExchangeRate());
+                lastSevenDenominations.add(data.get(i).getDenomination());
             }
 
             LocalDate lastDate = convertStringToDate(data.get(FIRST_LINE).getDate());
 
-            exchangeRateDataList.add(new ExchangeRateData(lastDate, dataForForecasting, lastSevenDenomination, currency));
+            exchangeRateDataList.add(new ExchangeRateData(lastDate, dataForForecasting, lastSevenDenominations, currency));
         }
         return exchangeRateDataList;
     }
@@ -59,7 +61,7 @@ public class ExchangeRateFilesReader {
                     .build()
                     .parse();
         } catch (IOException exception) {
-            throw new ExchangeRateDataException(MessageFormat.format("The file {0} does not exist", fileName));
+            throw new ExchangeRateDataException(MessageFormat.format("The file \"{0}\" does not exist", fileName));
         }
         return data;
     }

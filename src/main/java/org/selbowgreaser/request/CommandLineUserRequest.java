@@ -43,7 +43,7 @@ public class CommandLineUserRequest implements UserRequest {
 
         if (!parsedRequest.get(INDEX_OF_RATE).equals(firstWordOfRequest)) {
             throw new CommandLineUserRequestException(MessageFormat.format(
-                    "Expected \"RATE\" received {0}", parsedRequest.get(INDEX_OF_RATE)));
+                    "Expected \"RATE\" received \"{0}\"", parsedRequest.get(INDEX_OF_RATE)));
         }
 
         return parsedRequest;
@@ -82,7 +82,7 @@ public class CommandLineUserRequest implements UserRequest {
 
         return parsedCurrencies
                 .stream()
-                .filter(currency -> checkForCurrency(currency))
+                .filter(this::checkForCurrency)
                 .map(Currency::valueOf)
                 .collect(Collectors.toList());
     }
@@ -93,7 +93,7 @@ public class CommandLineUserRequest implements UserRequest {
             return true;
         } catch (IllegalArgumentException exception) {
             throw new CommandLineUserRequestException(MessageFormat.format(
-                    "There is no data for the {0}", currency));
+                    "There is no data for the \"{0}\"", currency));
         }
     }
 
@@ -108,7 +108,7 @@ public class CommandLineUserRequest implements UserRequest {
         try {
             periodOrDate = parsedRequest.get(indexPeriodOrDate);
         } catch (IndexOutOfBoundsException exception) {
-            throw new CommandLineUserRequestException("Expected period");
+            throw new CommandLineUserRequestException("Expected period or date");
         }
 
         try {
@@ -119,7 +119,7 @@ public class CommandLineUserRequest implements UserRequest {
                 LocalDate.parse(periodOrDate, DateTimeFormatter.ofPattern(DATE_PATTERN));
             } catch (DateTimeParseException exceptionWrongPeriod) {
                 throw new CommandLineUserRequestException(MessageFormat.format(
-                        "{0} - date or period is incorrect", periodOrDate));
+                        "\"{0}\" - date or period is incorrect", periodOrDate));
             }
         }
         return periodOrDate;
@@ -155,7 +155,7 @@ public class CommandLineUserRequest implements UserRequest {
             return true;
         } catch (IllegalArgumentException exception) {
             throw new CommandLineUserRequestException(MessageFormat.format(
-                    "{0} does not exist", algorithm));
+                    "\"{0}\" does not exist", algorithm));
         }
     }
 
@@ -178,7 +178,7 @@ public class CommandLineUserRequest implements UserRequest {
             return OutputMode.valueOf(outputMode);
         } catch (IllegalArgumentException exceptionNotFixPeriod) {
             throw new CommandLineUserRequestException(MessageFormat.format(
-                    "{0} - output mode is incorrect", outputMode));
+                    "\"{0}\" - output mode is incorrect", outputMode));
         }
     }
 }

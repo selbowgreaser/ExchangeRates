@@ -26,18 +26,21 @@ public class CommandLineHandler implements RequestHandler {
 
         String result = new OutputHandler().processing(exchangeRateData, predictions);
 
+        System.out.println("Привет ");
+
         System.out.println(result);
     }
 
     private UserRequest getUserRequest(Scanner userRequest) {
         UserRequest request;
-        try {
-            request = new CommandLineUserRequest(userRequest.nextLine());
-        } catch (CommandLineUserRequestException exception) {
-            System.out.println(exception.getMessage());
-            System.out.println("Try again!");
-            request = new CommandLineUserRequest(userRequest.nextLine());
+        while (true) {
+            try {
+                request = new CommandLineUserRequest(userRequest.nextLine());
+                return request;
+            } catch (CommandLineUserRequestException exception) {
+                System.out.println(exception.getMessage());
+                System.out.println("Try again!");
+            }
         }
-        return request;
     }
 }
