@@ -45,7 +45,6 @@ public class Bot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Зашли в елсе");
             SendMessage message = new SendMessage();
             message.setChatId(chatId);
             message.setText(new BotCommandHandler().processRequest(update));
