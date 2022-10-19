@@ -1,13 +1,14 @@
 package org.selbowgreaser;
 
-import org.selbowgreaser.handler.CommandLineHandler;
-import org.selbowgreaser.handler.RequestHandler;
+import org.selbowgreaser.manager.CommandLineRequestProcessingManager;
+import org.selbowgreaser.manager.RequestProcessingManager;
 
 
 public class ExchangeRatesCommandLineApp {
     public static void main(String[] args) {
-        RequestHandler app = new CommandLineHandler();
-        app.processRequest();
-
+        RequestProcessingManager app = new CommandLineRequestProcessingManager();
+        while (true) {
+            app.processRequest();
+        }
     }
 }

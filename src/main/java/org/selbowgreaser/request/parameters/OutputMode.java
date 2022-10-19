@@ -1,4 +1,4 @@
-package org.selbowgreaser.request;
+package org.selbowgreaser.request.parameters;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package org.selbowgreaser.request;
+package org.selbowgreaser.request.parameters;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum Currency {
     USD("USD"),
     TRY("TRY"),
-    EUR("EUR");
+    EUR("EUR"),
+    BGN("BGN"),
+    AMD("AMD");
 
     private final String currency;
 }

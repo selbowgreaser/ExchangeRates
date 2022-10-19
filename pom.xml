@@ -25,7 +25,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>org.selbowgreaser.ExchangeRatesCommandLineApp</mainClass>
+              <mainClass>org.selbowgreaser.ExchangeRatesApp</mainClass>
             </manifest>
           </archive>
           <!--Ignoring postfix jar-with-dependencies-->
@@ -66,18 +66,26 @@
       <artifactId>opencsv</artifactId>
       <version>5.7.0</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambots -->
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
     <dependency>
-      <groupId>org.telegram</groupId>
-      <artifactId>telegrambots</artifactId>
-      <version>6.1.0</version>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>4.8.0</version>
+      <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambotsextensions -->
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
     <dependency>
-      <groupId>org.telegram</groupId>
-      <artifactId>telegrambotsextensions</artifactId>
-      <version>6.1.0</version>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.4</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.3</version>
+    </dependency>
+
 
   </dependencies>
 </project>
