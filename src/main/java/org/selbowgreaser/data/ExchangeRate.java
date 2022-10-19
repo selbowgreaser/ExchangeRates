@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 @EqualsAndHashCode
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 public class ExchangeRate {
     @CsvBindByPosition(position = 0)
@@ -29,13 +30,6 @@ public class ExchangeRate {
     })
     private BigDecimal denomination;
 
-    public ExchangeRate(BigDecimal denomination, LocalDate date, BigDecimal exchangeRate, String cdx) {
-        this.denomination = denomination;
-        this.date = date;
-        this.exchangeRate = exchangeRate;
-        this.cdx = cdx;
-    }
-
     @CsvBindByPosition(position = 1)
     private LocalDate date;
 
@@ -43,10 +37,10 @@ public class ExchangeRate {
     private BigDecimal exchangeRate;
 
     @CsvBindByPosition(position = 3)
-    private String cdx;
+    private String currency;
 
     @Override
     public String toString() {
-        return String.format("ExchangeRate{denomination=%f, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", denomination, date, exchangeRate, cdx);
+        return String.format("ExchangeRate{denomination=%f, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", denomination, date, exchangeRate, currency);
     }
 }
