@@ -9,6 +9,8 @@ import org.selbowgreaser.request.RequestResult;
 import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
+import org.selbowgreaser.request.parameters.OutputMode;
+import org.selbowgreaser.visualization.Visualizer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,8 +37,13 @@ public class CommandLineRequestProcessingManager implements RequestProcessingMan
             }
         }
 
-        for (RequestResult requestResult : requestResults) {
-            System.out.println(outputHandler.processing(requestResult));
+        if (request.getOutputMode().equals(OutputMode.LIST)) {
+            for (RequestResult requestResult : requestResults) {
+                System.out.println(outputHandler.processing(requestResult));
+            }
+        } else {
+            Visualizer visualizer = new Visualizer("Exchange Rates Forecast");
+            visualizer.createJpeg(requestResults);
         }
     }
 
