@@ -4,15 +4,15 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.selbowgreaser.data.ExchangeRate;
 import org.selbowgreaser.data.ExchangeRatesDataException;
-import org.selbowgreaser.data.handler.ExchangeRatesDataHandler;
 import org.selbowgreaser.request.parameters.Currency;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
@@ -21,12 +21,12 @@ public class ExchangeRatesFileReaderImpl implements ExchangeRatesFileReader {
     private static final Character SEPARATOR = ';';
 
     @Override
-    public List<ExchangeRate> readExchangeRatesFiles() {
+    public Map<Currency, List<ExchangeRate>> readExchangeRatesFiles() {
         log.debug("Start reading data...");
-        List<ExchangeRate> data = new ArrayList<>();
+        Map<Currency, List<ExchangeRate>> data = new HashMap<>();
         for (Currency currency : Currency.values()) {
             String fileName = MessageFormat.format("{0}/{1}.csv", getFolderPath(), currency);
-            data.addAll(parseFile(fileName));
+            data.put(currency, parseFile(fileName));
         }
         log.debug("All data read successfully!");
         return data;
