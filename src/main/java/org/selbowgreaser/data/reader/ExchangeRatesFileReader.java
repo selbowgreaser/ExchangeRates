@@ -6,5 +6,7 @@ import org.selbowgreaser.request.parameters.Currency;
 import java.util.List;
 
 public interface ExchangeRatesFileReader {
-    List<ExchangeRate> readExchangeRatesFile(Currency currency);
+    List<ExchangeRate> readExchangeRatesFiles();
 }
+
+

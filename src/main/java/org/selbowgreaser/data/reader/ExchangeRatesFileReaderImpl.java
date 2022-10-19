@@ -11,29 +11,30 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 @Slf4j
 public class ExchangeRatesFileReaderImpl implements ExchangeRatesFileReader {
-    private final int SKIP_ROWS = 1;
-    private final Character SEPARATOR = ';';
+    private static final int SKIP_ROWS = 1;
+    private static final Character SEPARATOR = ';';
 
     @Override
-    public List<ExchangeRate> readExchangeRatesFile(Currency currency) {
-        log.info("Start reading data...");
-
-        String fileName = MessageFormat.format("{0}/{1}.csv", getFolderPath(), currency);
-
-        List<ExchangeRate> data;
-
-        data = getExchangeRates(fileName);
-
-        return new ExchangeRatesDataHandler().fillMissingDays(data);
+    public List<ExchangeRate> readExchangeRatesFiles() {
+        log.debug("Start reading data...");
+        List<ExchangeRate> data = new ArrayList<>();
+        for (Currency currency : Currency.values()) {
+            String fileName = MessageFormat.format("{0}/{1}.csv", getFolderPath(), currency);
+            data.addAll(parseFile(fileName));
+        }
+        log.debug("All data read successfully!");
+        return data;
     }
 
-    private List<ExchangeRate> getExchangeRates(String fileName) {
+    private List<ExchangeRate> parseFile(String fileName) {
         List<ExchangeRate> data;
+        log.debug(MessageFormat.format("Start reading {0}", fileName));
         try (FileReader file = new FileReader(fileName)) {
             data = new CsvToBeanBuilder<ExchangeRate>(file)
                     .withType(ExchangeRate.class)
@@ -41,6 +42,7 @@ public class ExchangeRatesFileReaderImpl implements ExchangeRatesFileReader {
                     .withSkipLines(SKIP_ROWS)
                     .build()
                     .parse();
+            log.debug(MessageFormat.format("{0} read successfully!", fileName));
         } catch (IOException exception) {
             throw new ExchangeRatesDataException(MessageFormat.format("The file \"{0}\" does not exist", fileName));
         }
