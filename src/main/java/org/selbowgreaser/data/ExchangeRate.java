@@ -9,10 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @EqualsAndHashCode
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ExchangeRate {
     @CsvBindByPosition(position = 0)
@@ -29,15 +29,15 @@ public class ExchangeRate {
     })
     private BigDecimal denomination;
 
-    public ExchangeRate(int denomination, String date, double exchangeRate, String cdx) {
-        this.denomination = BigDecimal.valueOf(denomination);
+    public ExchangeRate(BigDecimal denomination, LocalDate date, BigDecimal exchangeRate, String cdx) {
+        this.denomination = denomination;
         this.date = date;
-        this.exchangeRate = BigDecimal.valueOf(exchangeRate);
+        this.exchangeRate = exchangeRate;
         this.cdx = cdx;
     }
 
     @CsvBindByPosition(position = 1)
-    private String date;
+    private LocalDate date;
 
     @CsvBindByPosition(position = 2)
     private BigDecimal exchangeRate;
@@ -47,6 +47,6 @@ public class ExchangeRate {
 
     @Override
     public String toString() {
-        return String.format("ExchangeRate{denomination=%d, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", denomination, date, exchangeRate, cdx);
+        return String.format("ExchangeRate{denomination=%f, date=\"%s\", exchange rate=%f, cdx=\"%s\"}", denomination, date, exchangeRate, cdx);
     }
 }
