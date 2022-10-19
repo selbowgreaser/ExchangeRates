@@ -1,8 +1,10 @@
 package org.selbowgreaser.forecasting;
 
 import org.selbowgreaser.data.ExchangeRate;
-import org.selbowgreaser.data.extractor.DataExtractorForLinearRegressionAlgorithm;
+import org.selbowgreaser.data.ExchangeRateDao;
+import org.selbowgreaser.data.PredictedExchangeRate;
 import org.selbowgreaser.request.RequestResult;
+import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
 
 import java.math.BigDecimal;
@@ -15,36 +17,37 @@ public class LinearRegressionAlgorithm implements ForecastingAlgorithm {
 
     public static final int SCALE = 2;
     public final int DAYS_IN_MONTH = 30;
-    private final Currency currency;
-    private final List<LocalDate> dates;
     private BigDecimal intercept, slope;
     private BigDecimal r2;
     private BigDecimal svar0, svar1;
 
-    public LinearRegressionAlgorithm(Currency currency, List<LocalDate> dates) {
-        this.currency = currency;
-        this.dates = dates;
+    public LinearRegressionAlgorithm(ExchangeRateDao exchangeRateDao) {
+        this.exchangeRateDao = exchangeRateDao;
     }
 
-    @Override
-    public RequestResult forecast() {
-        List<ExchangeRate> exchangeRates = new DataExtractorForLinearRegressionAlgorithm(currency).extractData();
+    private final ExchangeRateDao exchangeRateDao;
 
-        List<BigDecimal> x = genX();
+    @Override
+    public RequestResult forecast(Currency currency, List<LocalDate> dates) {
+        List<ExchangeRate> exchangeRates = exchangeRateDao.getDataForLinearRegressionAlgorithm(currency);
+
+        List<BigDecimal> x = genX(dates.size());
         List<BigDecimal> y = extractExchangeRate(exchangeRates);
 
         trainModel(x, y);
 
-        BigDecimal predictedValue = this.slope.multiply(BigDecimal.valueOf(31)).add(this.intercept);
-        System.out.println(predictedValue);
+        List<PredictedExchangeRate> predictedExchangeRates = new ArrayList<>();
 
-        return null;
+        for (int i = DAYS_IN_MONTH; i < DAYS_IN_MONTH + dates.size(); i++) {
+            predictedExchangeRates.add(new PredictedExchangeRate(dates.get(i), this.slope.multiply(BigDecimal.valueOf(31)).add(this.intercept)));
+        }
+
+        return new RequestResult(currency, Algorithm.LINEAR_REGRESSION, predictedExchangeRates);
     }
 
     private void trainModel(List<BigDecimal> x, List<BigDecimal> y) {
         int n = x.size();
 
-        // first pass
         BigDecimal sumX = BigDecimal.ZERO;
         BigDecimal sumY = BigDecimal.ZERO;
         BigDecimal sumX2 = BigDecimal.ZERO;
@@ -57,7 +60,6 @@ public class LinearRegressionAlgorithm implements ForecastingAlgorithm {
         BigDecimal xBar = sumX.divide(BigDecimal.valueOf(n), SCALE, RoundingMode.HALF_UP);
         BigDecimal yBar = sumY.divide(BigDecimal.valueOf(n), SCALE, RoundingMode.HALF_UP);
 
-        // second pass: compute summary statistics
         BigDecimal xxBar = BigDecimal.ZERO;
         BigDecimal yyBar = BigDecimal.ZERO;
         BigDecimal xyBar = BigDecimal.ZERO;
@@ -69,9 +71,8 @@ public class LinearRegressionAlgorithm implements ForecastingAlgorithm {
         this.slope = xyBar.divide(xxBar, SCALE, RoundingMode.HALF_UP);
         this.intercept = yBar.add(slope.multiply(xBar).negate());
 
-        // more statistical analysis
-        BigDecimal rss = BigDecimal.ZERO;      // residual sum of squares
-        BigDecimal ssr = BigDecimal.ZERO;      // regression sum of squares
+        BigDecimal rss = BigDecimal.ZERO;
+        BigDecimal ssr = BigDecimal.ZERO;
         for (int i = 0; i < n; i++) {
             BigDecimal fit = slope.multiply(x.get(i)).add(intercept);
             rss = rss.add((fit.add(y.get(i).negate())).multiply(fit.add(y.get(i).negate())));
@@ -85,9 +86,9 @@ public class LinearRegressionAlgorithm implements ForecastingAlgorithm {
         this.svar0 = svar.divide(BigDecimal.valueOf(n), SCALE, RoundingMode.HALF_UP).add(xBar.multiply(xBar).multiply(svar1));
     }
 
-    private List<BigDecimal> genX() {
+    private List<BigDecimal> genX(int size) {
         List<BigDecimal> x = new ArrayList<>();
-        for (int i = 0; i < DAYS_IN_MONTH; i++) {
+        for (int i = 0; i < size; i++) {
             x.add(BigDecimal.valueOf(i));
         }
         return x;
