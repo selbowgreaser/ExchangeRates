@@ -95,5 +95,22 @@
       <artifactId>jfreechart</artifactId>
       <version>1.0.19</version>
     </dependency>
+    <dependency>
+      <groupId>org.selbowgreaser</groupId>
+      <artifactId>exchange-rates</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambots -->
+    <dependency>
+      <groupId>org.telegram</groupId>
+      <artifactId>telegrambots</artifactId>
+      <version>6.1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.telegram/telegrambotsextensions -->
+    <dependency>
+      <groupId>org.telegram</groupId>
+      <artifactId>telegrambotsextensions</artifactId>
+      <version>6.1.0</version>
+    </dependency>
   </dependencies>
 </project>
