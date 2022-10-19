@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum Currency {
     USD("USD"),
     TRY("TRY"),
-    EUR("EUR");
+    EUR("EUR"),
+    BGN("BGN"),
+    AMD("AMD");
 
     private final String currency;
 }
