@@ -1,6 +1,7 @@
 package org.selbowgreaser.data;
 
 import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvDate;
 import com.opencsv.bean.CsvNumber;
 import com.opencsv.bean.CsvNumbers;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class ExchangeRate {
     })
     private BigDecimal denomination;
 
+    @CsvDate(value = "dd.MM.yyyy")
     @CsvBindByPosition(position = 1)
     private LocalDate date;
 
