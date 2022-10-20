@@ -1,4 +1,4 @@
-package org.selbowgreaser.data;
+package org.selbowgreaser.model.reader;
 
 public class ExchangeRatesDataException extends RuntimeException {
     public ExchangeRatesDataException() {

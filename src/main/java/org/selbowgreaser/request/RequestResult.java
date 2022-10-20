@@ -2,7 +2,7 @@ package org.selbowgreaser.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.selbowgreaser.data.PredictedExchangeRate;
+import org.selbowgreaser.model.data.PredictedExchangeRate;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
 

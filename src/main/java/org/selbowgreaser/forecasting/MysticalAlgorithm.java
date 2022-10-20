@@ -1,8 +1,8 @@
 package org.selbowgreaser.forecasting;
 
-import org.selbowgreaser.data.ExchangeRate;
-import org.selbowgreaser.data.ExchangeRateDao;
-import org.selbowgreaser.data.PredictedExchangeRate;
+import org.selbowgreaser.model.data.ExchangeRate;
+import org.selbowgreaser.model.dao.ExchangeRateDao;
+import org.selbowgreaser.model.data.PredictedExchangeRate;
 import org.selbowgreaser.request.RequestResult;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;

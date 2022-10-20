@@ -1,6 +1,9 @@
-package org.selbowgreaser.request;
+package org.selbowgreaser.request.parsers;
 
 import org.selbowgreaser.handler.DateHandler;
+import org.selbowgreaser.request.CommandLineUserRequest;
+import org.selbowgreaser.request.UserRequest;
+import org.selbowgreaser.request.exceptions.CommandLineUserRequestException;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
 import org.selbowgreaser.request.parameters.OutputMode;
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CommandLineUserRequestParser {
+    private static final String FIRST_WORD_OF_REQUEST = "RATE";
     private static final int INDEX_OF_RATE = 0;
     private static final int INDEX_OF_CURRENCY = 1;
     private static final String DELIMITER = ",";
@@ -30,11 +34,10 @@ public class CommandLineUserRequestParser {
     }
 
     public UserRequest parseRequest(String request) {
-        String firstWordOfRequest = "RATE";
 
         parsedRequest = Arrays.asList(request.toUpperCase().split(" "));
 
-        if (!parsedRequest.get(INDEX_OF_RATE).equals(firstWordOfRequest)) {
+        if (!parsedRequest.get(INDEX_OF_RATE).equals(FIRST_WORD_OF_REQUEST)) {
             throw new CommandLineUserRequestException(MessageFormat.format(
                     "Expected \"RATE\" received \"{0}\"", parsedRequest.get(INDEX_OF_RATE)));
         }

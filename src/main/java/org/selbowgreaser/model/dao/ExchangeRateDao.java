@@ -1,5 +1,6 @@
-package org.selbowgreaser.data;
+package org.selbowgreaser.model.dao;
 
+import org.selbowgreaser.model.data.ExchangeRate;
 import org.selbowgreaser.request.parameters.Currency;
 
 import java.time.LocalDate;

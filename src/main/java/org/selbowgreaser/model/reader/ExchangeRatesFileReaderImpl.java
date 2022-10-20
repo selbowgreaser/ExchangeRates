@@ -1,9 +1,8 @@
-package org.selbowgreaser.data.reader;
+package org.selbowgreaser.model.reader;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.extern.slf4j.Slf4j;
-import org.selbowgreaser.data.ExchangeRate;
-import org.selbowgreaser.data.ExchangeRatesDataException;
+import org.selbowgreaser.model.data.ExchangeRate;
 import org.selbowgreaser.request.parameters.Currency;
 
 import java.io.FileInputStream;

@@ -1,16 +1,15 @@
 package org.selbowgreaser;
 
-import org.selbowgreaser.data.ExchangeRateDao;
-import org.selbowgreaser.data.ExchangeRateDaoImpl;
-import org.selbowgreaser.data.reader.ExchangeRatesFileReader;
-import org.selbowgreaser.data.reader.ExchangeRatesFileReaderImpl;
+import org.selbowgreaser.model.dao.ExchangeRateDao;
+import org.selbowgreaser.model.dao.ExchangeRateDaoImpl;
+import org.selbowgreaser.model.reader.ExchangeRatesFileReader;
+import org.selbowgreaser.model.reader.ExchangeRatesFileReaderImpl;
 import org.selbowgreaser.forecasting.AlgorithmFactory;
 import org.selbowgreaser.handler.CommandLineOutputHandler;
 import org.selbowgreaser.handler.DateHandler;
 import org.selbowgreaser.handler.OutputHandler;
-import org.selbowgreaser.manager.CommandLineRequestProcessingManager;
-import org.selbowgreaser.manager.RequestProcessingManager;
-import org.selbowgreaser.request.CommandLineUserRequestParser;
+import org.selbowgreaser.request.CommandLineRequestProcessingManager;
+import org.selbowgreaser.request.parsers.CommandLineUserRequestParser;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -27,7 +26,7 @@ public class ExchangeRatesCommandLineApp {
     private static final OutputHandler outputHandler = new CommandLineOutputHandler();
 
     public static void main(String[] args) {
-        RequestProcessingManager app = new CommandLineRequestProcessingManager(scannerUserRequest, commandLineUserRequestParser, algorithmFactory, outputHandler);
+        CommandLineRequestProcessingManager app = new CommandLineRequestProcessingManager(scannerUserRequest, commandLineUserRequestParser, algorithmFactory, outputHandler);
         app.processRequest();
     }
 }

@@ -1,4 +1,4 @@
-package org.selbowgreaser.data;
+package org.selbowgreaser.model.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

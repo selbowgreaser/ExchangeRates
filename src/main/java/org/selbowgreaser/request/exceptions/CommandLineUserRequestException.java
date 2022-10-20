@@ -1,4 +1,4 @@
-package org.selbowgreaser.request;
+package org.selbowgreaser.request.exceptions;
 
 public class CommandLineUserRequestException extends RuntimeException {
     public CommandLineUserRequestException() {

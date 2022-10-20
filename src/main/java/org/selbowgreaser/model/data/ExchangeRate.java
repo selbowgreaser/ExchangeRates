@@ -1,4 +1,4 @@
-package org.selbowgreaser.data;
+package org.selbowgreaser.model.data;
 
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
