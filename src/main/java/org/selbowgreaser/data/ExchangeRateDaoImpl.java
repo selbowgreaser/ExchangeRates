@@ -36,9 +36,10 @@ public class ExchangeRateDaoImpl implements ExchangeRateDao {
     public List<ExchangeRate> getDataForMysticalAlgorithm(Currency currency, List<LocalDate> dates, Random random) {
         List<ExchangeRate> exchangeRates = new ArrayList<>();
         for (LocalDate date : dates) {
-            int year = Integer.min(date.getYear(), 2022);
+            date = date.minusYears(1);
+            int year = date.getYear();
             List<ExchangeRate> valuesForDate = new ArrayList<>();
-            while (year > 2001) {
+            while (year > 2004) {
                 valuesForDate.add(getDataForDate(currency, LocalDate.of(year, date.getMonthValue(), date.getDayOfMonth())));
                 year--;
             }
