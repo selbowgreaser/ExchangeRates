@@ -9,9 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class CommandLineOutputHandler implements OutputHandler {
-    public static final String PATTERN_OUTPUT_STRING = "{0} {1} – {2}\n";
+public class BotOutputHandler implements OutputHandler {
     public static final String DASH_LINE = "-------------------------------------------\n";
+    public static final String PATTERN_OUTPUT_STRING = "{0} {1} – {2}\n";
     private final String RU = "ru";
     private final String DATE_PATTERN = "dd.MM.yyyy";
 
