@@ -14,13 +14,11 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RectangleInsets;
-import org.selbowgreaser.data.PredictedExchangeRate;
+import org.selbowgreaser.model.data.PredictedExchangeRate;
 import org.selbowgreaser.request.RequestResult;
 
 import java.awt.*;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -39,17 +37,19 @@ public class Visualizer extends ApplicationFrame {
         super(title);
     }
 
-    public void createJpeg(List<RequestResult> requestResults) {
+    public ByteArrayOutputStream createOutputStream(List<RequestResult> requestResults) {
         XYDataset dataset = createDataset(requestResults);
 
         JFreeChart jFreeChart = createChart(dataset);
 
+        ByteArrayOutputStream outputStream;
         try {
-            OutputStream out = new FileOutputStream("chart.jpeg");
-            ChartUtilities.writeChartAsPNG(out, jFreeChart, 720, 480);
+            outputStream = new ByteArrayOutputStream();
+            ChartUtilities.writeChartAsJPEG(outputStream, jFreeChart, 720, 480);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+        return outputStream;
     }
 
     private XYDataset createDataset(List<RequestResult> requestResults) {
