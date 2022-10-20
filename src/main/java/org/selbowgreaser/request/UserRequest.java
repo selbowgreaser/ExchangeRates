@@ -1,5 +1,6 @@
 package org.selbowgreaser.request;
 
+import lombok.Getter;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
 import org.selbowgreaser.request.parameters.OutputMode;
