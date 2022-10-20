@@ -2,15 +2,12 @@ package org.selbowgreaser.bot;
 
 import org.selbowgreaser.forecasting.AlgorithmFactory;
 import org.selbowgreaser.forecasting.ForecastingAlgorithm;
-import org.selbowgreaser.handler.OutputHandler;
 import org.selbowgreaser.request.RequestResult;
 import org.selbowgreaser.request.UserRequest;
 import org.selbowgreaser.request.exceptions.BotUserRequestException;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
-import org.selbowgreaser.request.parameters.OutputMode;
 import org.selbowgreaser.request.parsers.BotUserRequestParser;
-import org.selbowgreaser.visualization.Visualizer;
 
 import java.util.ArrayList;
 import java.util.List;

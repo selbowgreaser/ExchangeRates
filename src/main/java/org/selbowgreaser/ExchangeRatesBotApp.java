@@ -3,14 +3,14 @@ package org.selbowgreaser;
 import org.selbowgreaser.bot.Bot;
 import org.selbowgreaser.bot.BotRequestProcessingManager;
 import org.selbowgreaser.bot.MessageSenderFactory;
-import org.selbowgreaser.model.dao.ExchangeRateDao;
-import org.selbowgreaser.model.dao.ExchangeRateDaoImpl;
-import org.selbowgreaser.model.reader.ExchangeRatesFileReader;
-import org.selbowgreaser.model.reader.ExchangeRatesFileReaderImpl;
 import org.selbowgreaser.forecasting.AlgorithmFactory;
 import org.selbowgreaser.handler.BotOutputHandler;
 import org.selbowgreaser.handler.DateHandler;
 import org.selbowgreaser.handler.OutputHandler;
+import org.selbowgreaser.model.dao.ExchangeRateDao;
+import org.selbowgreaser.model.dao.ExchangeRateDaoImpl;
+import org.selbowgreaser.model.reader.ExchangeRatesFileReader;
+import org.selbowgreaser.model.reader.ExchangeRatesFileReaderImpl;
 import org.selbowgreaser.request.parsers.BotUserRequestParser;
 
 import java.util.Map;

@@ -18,7 +18,8 @@ import org.selbowgreaser.model.data.PredictedExchangeRate;
 import org.selbowgreaser.request.RequestResult;
 
 import java.awt.*;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

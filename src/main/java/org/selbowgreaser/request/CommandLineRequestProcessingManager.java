@@ -4,17 +4,15 @@ import org.selbowgreaser.forecasting.AlgorithmFactory;
 import org.selbowgreaser.forecasting.ForecastingAlgorithm;
 import org.selbowgreaser.handler.OutputHandler;
 import org.selbowgreaser.request.exceptions.CommandLineUserRequestException;
-import org.selbowgreaser.request.parsers.CommandLineUserRequestParser;
 import org.selbowgreaser.request.parameters.Algorithm;
 import org.selbowgreaser.request.parameters.Currency;
-import org.selbowgreaser.request.parameters.OutputMode;
-import org.selbowgreaser.visualization.Visualizer;
+import org.selbowgreaser.request.parsers.CommandLineUserRequestParser;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CommandLineRequestProcessingManager{
+public class CommandLineRequestProcessingManager {
     private final Scanner scannerUserRequest;
     private final AlgorithmFactory algorithmFactory;
     private final OutputHandler outputHandler;

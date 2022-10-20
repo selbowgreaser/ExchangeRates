@@ -1,7 +1,6 @@
 package org.selbowgreaser.bot;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.selbowgreaser.request.RequestResult;
 import org.selbowgreaser.request.parameters.OutputMode;
 

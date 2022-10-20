@@ -1,8 +1,8 @@
 package org.selbowgreaser.bot;
 
-import org.selbowgreaser.model.dao.ExchangeRateDao;
 import org.selbowgreaser.forecasting.AlgorithmFactory;
 import org.selbowgreaser.handler.OutputHandler;
+import org.selbowgreaser.model.dao.ExchangeRateDao;
 import org.selbowgreaser.request.RequestResult;
 import org.selbowgreaser.request.parameters.OutputMode;
 import org.selbowgreaser.visualization.Visualizer;
@@ -17,8 +17,6 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 public class Bot extends TelegramLongPollingBot {
     private static final long RECONNECT_PAUSE = 10000;
