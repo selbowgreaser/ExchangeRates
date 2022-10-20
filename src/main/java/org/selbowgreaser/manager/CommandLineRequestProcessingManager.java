@@ -31,27 +31,29 @@ public class CommandLineRequestProcessingManager implements RequestProcessingMan
 
     @Override
     public void processRequest() {
-        List<RequestResult> requestResults = new ArrayList<>();
+        while (true) {
+            List<RequestResult> requestResults = new ArrayList<>();
 
-        System.out.println("Enter your request in the format \"Rate USD ( -period | -date ) ( week, month | tomorrow, 25.06.2032 ) " +
-                "-alg ( AVG | MYST | LY | LR) -output ( list | graph )\":");
+            System.out.println("Enter your request in the format \"Rate USD ( -period | -date ) ( week, month | tomorrow, 25.06.2032 ) " +
+                    "-alg ( AVG | MYST | LY | LR) -output ( list | graph )\":");
 
-        UserRequest request = getUserRequest(scannerUserRequest);
+            UserRequest request = getUserRequest(scannerUserRequest);
 
-        for (Currency currency : request.getCurrencies()) {
-            for (Algorithm algorithm : request.getAlgorithms()) {
-                ForecastingAlgorithm forecastingAlgorithm = algorithmFactory.createAlgorithm(algorithm);
-                requestResults.add(forecastingAlgorithm.forecast(currency, request.getDates()));
+            for (Currency currency : request.getCurrencies()) {
+                for (Algorithm algorithm : request.getAlgorithms()) {
+                    ForecastingAlgorithm forecastingAlgorithm = algorithmFactory.createAlgorithm(algorithm);
+                    requestResults.add(forecastingAlgorithm.forecast(currency, request.getDates()));
+                }
             }
-        }
 
-        if (request.getOutputMode().equals(OutputMode.LIST)) {
-            for (RequestResult requestResult : requestResults) {
-                System.out.println(outputHandler.processing(requestResult));
+            if (request.getOutputMode().equals(OutputMode.LIST)) {
+                for (RequestResult requestResult : requestResults) {
+                    System.out.println(outputHandler.processing(requestResult));
+                }
+            } else {
+                Visualizer visualizer = new Visualizer("Exchange Rates Forecast");
+                visualizer.createJpeg(requestResults);
             }
-        } else {
-            Visualizer visualizer = new Visualizer("Exchange Rates Forecast");
-            visualizer.createJpeg(requestResults);
         }
     }
 

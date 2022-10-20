@@ -28,8 +28,6 @@ public class ExchangeRatesCommandLineApp {
 
     public static void main(String[] args) {
         RequestProcessingManager app = new CommandLineRequestProcessingManager(scannerUserRequest, commandLineUserRequestParser, algorithmFactory, outputHandler);
-        while (true) {
-            app.processRequest();
-        }
+        app.processRequest();
     }
 }
