@@ -1,10 +1,13 @@
-package org.selbowgreaser.data;
+package org.selbowgreaser.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.selbowgreaser.TestDataGenerator;
-import org.selbowgreaser.data.reader.ExchangeRatesFileReader;
+import org.selbowgreaser.model.dao.ExchangeRateDao;
+import org.selbowgreaser.model.dao.ExchangeRateDaoImpl;
+import org.selbowgreaser.model.data.ExchangeRate;
+import org.selbowgreaser.model.reader.ExchangeRatesFileReader;
 import org.selbowgreaser.request.parameters.Currency;
 
 import java.math.BigDecimal;
