@@ -39,7 +39,7 @@ public class LinearRegressionAlgorithm implements ForecastingAlgorithm {
         List<PredictedExchangeRate> predictedExchangeRates = new ArrayList<>();
 
         for (int i = DAYS_IN_MONTH; i < DAYS_IN_MONTH + dates.size(); i++) {
-            predictedExchangeRates.add(new PredictedExchangeRate(dates.get(i), this.slope.multiply(BigDecimal.valueOf(31)).add(this.intercept)));
+            predictedExchangeRates.add(new PredictedExchangeRate(dates.get(i - DAYS_IN_MONTH), this.slope.multiply(BigDecimal.valueOf(i)).add(this.intercept)));
         }
 
         return new RequestResult(currency, Algorithm.LINEAR_REGRESSION, predictedExchangeRates);
