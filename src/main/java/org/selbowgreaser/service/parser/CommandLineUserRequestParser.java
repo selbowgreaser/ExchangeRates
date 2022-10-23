@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CommandLineUserRequestParser {
+public class CommandLineUserRequestParser implements UserRequestParser{
     private static final String FIRST_WORD_OF_REQUEST = "RATE";
     private static final int INDEX_OF_RATE = 0;
     private static final int INDEX_OF_CURRENCY = 1;
@@ -33,6 +33,7 @@ public class CommandLineUserRequestParser {
         this.dateHandler = dateHandler;
     }
 
+    @Override
     public UserRequest parseRequest(String request) {
 
         parsedRequest = Arrays.asList(request.toUpperCase().split(" "));
