@@ -1,7 +1,7 @@
 package org.selbowgreaser;
 
 import org.selbowgreaser.model.data.ExchangeRate;
-import org.selbowgreaser.request.parameters.Currency;
+import org.selbowgreaser.model.parameter.Currency;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
