@@ -1,4 +1,4 @@
-package org.selbowgreaser.dao;
+package org.selbowgreaser.repository.dao;
 
 import org.selbowgreaser.model.data.ExchangeRate;
 import org.selbowgreaser.model.parameter.Currency;

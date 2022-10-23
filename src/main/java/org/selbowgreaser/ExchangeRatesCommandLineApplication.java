@@ -1,6 +1,6 @@
 package org.selbowgreaser;
 
-import org.selbowgreaser.dao.ExchangeRateDaoImpl;
+import org.selbowgreaser.repository.dao.ExchangeRateDaoImpl;
 import org.selbowgreaser.service.reader.ExchangeRatesFileReaderImpl;
 import org.selbowgreaser.service.manager.CommandLineRequestProcessingManager;
 import org.selbowgreaser.service.parser.CommandLineUserRequestParser;

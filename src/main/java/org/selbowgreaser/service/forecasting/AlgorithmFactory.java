@@ -1,6 +1,6 @@
 package org.selbowgreaser.service.forecasting;
 
-import org.selbowgreaser.dao.ExchangeRateDao;
+import org.selbowgreaser.repository.dao.ExchangeRateDao;
 import org.selbowgreaser.model.parameter.Algorithm;
 
 import java.util.Random;

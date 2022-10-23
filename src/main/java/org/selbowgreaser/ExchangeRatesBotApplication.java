@@ -2,7 +2,7 @@ package org.selbowgreaser;
 
 import org.selbowgreaser.controller.TelegramBot;
 import org.selbowgreaser.service.manager.BotRequestProcessingManager;
-import org.selbowgreaser.dao.ExchangeRateDaoImpl;
+import org.selbowgreaser.repository.dao.ExchangeRateDaoImpl;
 import org.selbowgreaser.service.reader.ExchangeRatesFileReaderImpl;
 import org.selbowgreaser.service.parser.BotUserRequestParser;
 import org.selbowgreaser.service.forecasting.AlgorithmFactory;
